@@ -514,3 +514,4 @@ class ImagePair(Arc):
 
         > example_two.save(path='./new_dir', name='TEST2')
             # saves ground truth and degraded images as ground_truth_images_TEST2.tif and degraded_images_TEST2.tif
+'''

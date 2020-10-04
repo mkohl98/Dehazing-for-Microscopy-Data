@@ -10,7 +10,7 @@ from skimage.measure import compare_ssim
 
 class WaveletDehaze(object):
     def __init__(self, wavelet='haar'):
-        self.wavelet = wavelet  # to have an overview about all possible wavelets: print(pywt.waveletlist())
+        self.wavelet = wavelet  # to have an overview about all possible wavelets: print(pywt.wavelist())
         self.original_image = np.array([])
         self.dehazed_image = np.array([])
         self.level = 5
