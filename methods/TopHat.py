@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import tifffile as tf
 import cv2
-from Methods import Metrics
+from utils import metrics
 
 
 def threshold(im, value, substitute=0):
@@ -31,9 +31,9 @@ def grid_search(deg_, gt, array_win, array_th, kerneltype='ellipse', metric='SSI
 
             grid[th][win][0] = list(top)
             if metric is 'SSIM':
-                grid[th][win][1] = Metrics.SSIM(top, gt)
+                grid[th][win][1] = metrics.SSIM(top, gt)
             elif metric is 'PSNR':
-                grid[th][win][1] = Metrics.best_PSNR(deg_, top)
+                grid[th][win][1] = metrics.best_PSNR(deg_, top)
             else:
                 raise ValueError('metric needs to be str. SSIM or PSNR')
     return grid
