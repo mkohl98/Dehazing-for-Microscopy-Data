@@ -3,10 +3,10 @@ You can find the code for my Bachelor thesis in this repository. Here I want to 
 guideline.
 
 ## Prerequisites
-* Python 3 installed
+* Python 3.5+ installed
 * Repository cloned
 * Install all Libraries which are used for each method via pip install
-* Import all methods by running:
+* Import all methods into your new file by running:
 ````
 import methods.*
 ````
@@ -40,7 +40,7 @@ This code saves the ground truth and degraded images as 'ground_truth_images_dat
 'degraded_images_data.tif'. Keep in mind, that the Data Generator returns you the generated images as '.tif'-files.
 
 ## Dehazing with Multiscale Wavelet Decomposition
-To dehaze an image it is important to have your data saved as '.tif'-file. Furthermore, it is
+To dehaze an image it is important to have your data saved as '.tif'-file. Fist, it is
 important to choose a wavelet for the multiscale decomposition. You can display each
 available wavelet by running the following command of the python wavelet analysis library.
 ````
@@ -63,17 +63,13 @@ Now, you can use it for further processing.
 ## Top Hat Transforms
 
 To dehaze images via Top Hat Transforms you can use the code in the TopHat.py file as a reference. Therefore the 
-following code describes the case when you just want to run Top Hat Transforms on only one window size and one
+following code describes the case when you just want to run the Top Hat Transform on only one window size and one
 threshold parameter. 
 ```
-window_size = 1
-threshold = 1
-kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (window_size, window_size))
-top_ = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
-top = np.array(TopHat.threshold(top_, threshold), dtype=np.float32)
+top_hat_transformed_image = TopHat.tophat(image, window_size=1, threshold=0)
 ```
-You must replace 'img' with your image which should be dehazed, insert your window_size and also your threshold. In
-this case 'top' is your processed image.
+You have only to replace 'image' with your image (2d-array, no '.tif'-file) which should be dehazed, insert your 
+window_size and also your threshold. Done.
 
 
 

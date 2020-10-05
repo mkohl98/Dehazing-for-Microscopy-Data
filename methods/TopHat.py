@@ -13,6 +13,12 @@ def threshold(im, value, substitute=0):
     return im
 
 
+def tophat(img, window_size, threshold_value):
+    kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (window_size, window_size))
+    top_ = cv2.morphologyEx(img, cv2.MORPH_TOPHAT, kernel)
+    top = np.array(threshold(top_, threshold_value), dtype=np.float32)
+    return top
+
 def grid_search(deg_, gt, array_win, array_th, kerneltype='ellipse', metric='SSIM'):
 
     grid = [[[None, 0] for y in array_win] for x in array_th]
@@ -99,10 +105,10 @@ def write_tiff(array, name):
 # ---- do something here -------------------------------
 
 
-thresh = []  # array containing threshold values
-window = []  # array containing window size values
-
-img = tf.imread('image.tif', key=0)
-gt = np.array(tf.imread('gr.tif', key=0))
-results = grid_search(img, gt, window, thresh, metric='PSNR')
-x = get_best(results, thresh, window, img, gt, True)
+# thresh = []  # array containing threshold values
+# window = []  # array containing window size values
+#
+# img = tf.imread('image.tif', key=0)
+# gt = np.array(tf.imread('gr.tif', key=0))
+# results = grid_search(img, gt, window, thresh, metric='PSNR')
+# x = get_best(results, thresh, window, img, gt, True)
